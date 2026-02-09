@@ -1,0 +1,361 @@
+import React, { useState, useEffect } from 'react';
+import { 
+  Shield, 
+  Zap, 
+  Smartphone, 
+  CreditCard, 
+  Terminal, 
+  CheckCircle, 
+  Menu, 
+  X, 
+  Code, 
+  Bitcoin, 
+  Users, 
+  LayoutDashboard 
+} from 'lucide-react';
+
+const App = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+  // Simulation of the bot chat for the demo section
+  const [chatStep, setChatStep] = useState(0);
+
+  const chatSequence = [
+    { sender: 'user', text: '/start' },
+    { sender: 'bot', text: '👋 Salut ! Bienvenue sur AutoShop.\n✅ Produits digitaux\n✅ Livraison instantanée\n👇 Utilise les boutons ci-dessous.' },
+    { sender: 'user', text: '🛍️ Boutique' },
+    { sender: 'bot', text: '🛍️ BOUTIQUE\n\n🏆 VIP: Standard\n\nChoisis un produit :', buttons: ['Netflix 4K', 'Spotify Premium', 'VPN 1 An'] },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setChatStep((prev) => (prev < chatSequence.length ? prev + 1 : 0));
+    }, 2000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-slate-200 font-sans selection:bg-cyan-500 selection:text-white overflow-x-hidden">
+      
+      {/* Background Elements */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-cyan-500/10 rounded-full blur-[128px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-violet-600/10 rounded-full blur-[128px]" />
+        <div className="absolute top-[40%] left-[50%] translate-x-[-50%] w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5" />
+      </div>
+
+      {/* Navigation */}
+      <nav className="fixed w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center gap-2">
+              <div className="bg-gradient-to-tr from-cyan-400 to-blue-600 p-2 rounded-lg">
+                <Terminal size={20} className="text-white" />
+              </div>
+              <span className="font-bold text-xl tracking-tight text-white">UKR<span className="text-cyan-400">92k</span>.Bot</span>
+            </div>
+            
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-8">
+                <a href="#features" className="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Fonctionnalités</a>
+                <a href="#demo" className="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Démo</a>
+                <a href="#code" className="hover:text-cyan-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Architecture</a>
+                <a href="#pricing" className="bg-white text-slate-950 hover:bg-cyan-500 hover:text-white transition-all px-4 py-2 rounded-full text-sm font-bold">Acheter le Bot</a>
+              </div>
+            </div>
+
+            <div className="-mr-2 flex md:hidden">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none">
+                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-slate-900 border-b border-slate-800">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <a href="#features" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800">Fonctionnalités</a>
+              <a href="#demo" className="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-800">Démo</a>
+              <a href="#pricing" className="block px-3 py-2 rounded-md text-base font-medium text-cyan-400">Acheter</a>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative z-10 pt-32 pb-20 lg:pt-48 lg:pb-32 px-4">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-700 mb-8 animate-fade-in-up">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-300">Version 5.0 Stable Release</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6">
+            L'automatisation Telegram <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">Ultime & Sécurisée</span>
+          </h1>
+          
+          <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-400">
+            Lancez votre business automatisé en quelques minutes. Paiements Crypto (SOL, BTC, ETH), livraison instantanée, panel admin complet et gestion de stock avancée.
+          </p>
+          
+          <div className="mt-10 flex justify-center gap-4">
+            <a href="#pricing" className="px-8 py-4 bg-cyan-500 hover:bg-cyan-600 text-white font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/25 flex items-center gap-2">
+              <Zap size={20} />
+              Obtenir le Code
+            </a>
+            <a href="https://t.me/ukr92k" target="_blank" rel="noreferrer" className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-bold rounded-xl border border-slate-700 transition-all flex items-center gap-2">
+              <Smartphone size={20} />
+              Test Live
+            </a>
+          </div>
+
+          {/* Code Snippet Decoration */}
+          <div id="code" className="mt-16 relative max-w-4xl mx-auto perspective-1000">
+            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl blur opacity-30"></div>
+            <div className="relative bg-slate-900 rounded-2xl border border-slate-800 p-4 text-left shadow-2xl overflow-hidden">
+              <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-2">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-500" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                  <div className="w-3 h-3 rounded-full bg-green-500" />
+                </div>
+                <div className="text-xs text-slate-500 font-mono ml-2">config.py — python</div>
+              </div>
+              <pre className="font-mono text-xs md:text-sm text-cyan-300 overflow-x-auto">
+                <code>
+                  <span className="text-purple-400">import</span> telegram<br/>
+                  <span className="text-purple-400">from</span> telegram.ext <span className="text-purple-400">import</span> ApplicationBuilder<br/>
+                  <br/>
+                  <span className="text-slate-500"># Configuration Crypto</span><br/>
+                  SOL_ADDRESS = os.getenv(<span className="text-green-400">"SOL_ADDRESS"</span>, <span className="text-green-400">"7MrWKvSE3oG3..."</span>)<br/>
+                  SOL_MONITOR_ENABLED = <span className="text-blue-400">True</span><br/>
+                  <br/>
+                  <span className="text-slate-500"># Système VIP Automatique</span><br/>
+                  <span className="text-purple-400">def</span> <span className="text-yellow-400">get_vip_level</span>(points):<br/>
+                  &nbsp;&nbsp;<span className="text-purple-400">if</span> points {'>='} <span className="text-orange-400">5000</span>: <span className="text-purple-400">return</span> <span className="text-green-400">"💎 Platinum"</span>, <span className="text-orange-400">20</span><br/>
+                  &nbsp;&nbsp;<span className="text-purple-400">if</span> points {'>='} <span className="text-orange-400">1500</span>: <span className="text-purple-400">return</span> <span className="text-green-400">"🥇 Gold"</span>, <span className="text-orange-400">15</span>
+                </code>
+              </pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-10 border-y border-slate-800 bg-slate-900/50">
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div>
+            <div className="text-3xl font-bold text-white mb-1">99.9%</div>
+            <div className="text-sm text-slate-500 uppercase tracking-wide">Uptime</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-white mb-1">SOL/BTC</div>
+            <div className="text-sm text-slate-500 uppercase tracking-wide">Auto-Detection</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-white mb-1">&lt; 1s</div>
+            <div className="text-sm text-slate-500 uppercase tracking-wide">Temps de réponse</div>
+          </div>
+          <div>
+            <div className="text-3xl font-bold text-white mb-1">100%</div>
+            <div className="text-sm text-slate-500 uppercase tracking-wide">Python Pur</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section id="features" className="py-20 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Fonctionnalités Premium</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Un bot conçu pour le business. Chaque ligne de code a été optimisée pour la conversion et la stabilité.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <FeatureCard 
+              icon={<CreditCard className="text-cyan-400" />}
+              title="Paiements Crypto Auto"
+              desc="Intégration native de Solana (avec RPC monitoring), Bitcoin et Ethereum. Le bot détecte automatiquement les transactions sur la blockchain."
+            />
+            <FeatureCard 
+              icon={<LayoutDashboard className="text-purple-400" />}
+              title="Panel Admin Complet"
+              desc="Gérez tout depuis Telegram : ajout de produits, gestion des stocks, statistiques financières, broadcasts aux utilisateurs."
+            />
+            <FeatureCard 
+              icon={<Users className="text-green-400" />}
+              title="Système VIP & Fidélité"
+              desc="Récompensez vos meilleurs clients. Le bot calcule automatiquement les points et applique les réductions (Bronze, Silver, Gold, Platinum)."
+            />
+            <FeatureCard 
+              icon={<Shield className="text-blue-400" />}
+              title="Sécurité & Atomicité"
+              desc="Système de sauvegarde atomique JSON pour éviter la corruption de données. Gestion des permissions Admin et Super-Admin."
+            />
+            <FeatureCard 
+              icon={<Zap className="text-yellow-400" />}
+              title="Livraison Instantanée"
+              desc="Dès que le paiement est validé, le bot délivre le produit (texte ou fichier) instantanément à l'utilisateur."
+            />
+            <FeatureCard 
+              icon={<Terminal className="text-pink-400" />}
+              title="Code Propre & Modulaire"
+              desc="Code Python structuré, typé et commenté. Facile à héberger sur n'importe quel VPS ou serveur Linux."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Live Simulation Section */}
+      <section id="demo" className="py-20 bg-slate-900 border-y border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex-1 space-y-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Une expérience utilisateur <span className="text-cyan-400">fluide</span>.
+            </h2>
+            <p className="text-slate-400 text-lg">
+              Vos clients n'ont pas le temps d'attendre. Le bot répond instantanément, guide l'utilisateur et gère les erreurs de manière autonome.
+            </p>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3">
+                <CheckCircle className="text-green-500" size={20} />
+                <span>Menus interactifs (Inline Buttons)</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <CheckCircle className="text-green-500" size={20} />
+                <span>Historique de commandes complet</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <CheckCircle className="text-green-500" size={20} />
+                <span>Rechargement de solde simplifié</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Phone/Chat Simulator */}
+          <div className="flex-1 flex justify-center">
+            <div className="relative w-[320px] h-[600px] bg-slate-950 rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden">
+              <div className="absolute top-0 w-full h-24 bg-slate-800 z-10 p-4 pt-10 flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">
+                  B
+                </div>
+                <div>
+                  <div className="text-white font-bold text-sm">AutoShop Bot</div>
+                  <div className="text-cyan-400 text-xs">bot</div>
+                </div>
+              </div>
+              
+              <div className="absolute top-24 bottom-0 w-full bg-[#0e1621] p-4 flex flex-col gap-4 overflow-y-auto">
+                 {/* Background pattern mimicking Telegram */}
+                 <div className="absolute inset-0 opacity-5 bg-[url('https://web.telegram.org/img/bg_0.png')] bg-repeat" />
+
+                {chatSequence.slice(0, chatStep + 1).map((msg, i) => (
+                  <div key={i} className={`relative max-w-[85%] p-3 rounded-lg text-sm ${msg.sender === 'user' ? 'self-end bg-[#2b5278] text-white rounded-br-none' : 'self-start bg-[#182533] text-white rounded-bl-none'}`}>
+                    <div className="whitespace-pre-line">{msg.text}</div>
+                    {msg.buttons && (
+                      <div className="mt-2 grid grid-cols-1 gap-1">
+                        {msg.buttons.map((btn, btnIdx) => (
+                          <div key={btnIdx} className="bg-[#2b5278]/50 p-2 text-center text-xs text-cyan-400 font-bold rounded cursor-pointer hover:bg-[#2b5278]">
+                            {btn}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Investissez dans la qualité</h2>
+            <p className="text-slate-400">Deux options pour démarrer votre empire Telegram.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Standard License */}
+            <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 hover:border-slate-600 transition-all group">
+              <h3 className="text-2xl font-bold text-white mb-2">Code Source Standard</h3>
+              <div className="text-4xl font-bold text-white mb-6">150€ <span className="text-sm font-normal text-slate-500">/ une fois</span></div>
+              <p className="text-slate-400 mb-8">Obtenez le script Python complet. Idéal si vous savez configurer un VPS et Python.</p>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex gap-3 text-sm"><CheckCircle size={18} className="text-cyan-500"/> Fichiers Python (.py) complets</li>
+                <li className="flex gap-3 text-sm"><CheckCircle size={18} className="text-cyan-500"/> Documentation d'installation</li>
+                <li className="flex gap-3 text-sm"><CheckCircle size={18} className="text-cyan-500"/> Accès aux mises à jour v5.x</li>
+                <li className="flex gap-3 text-sm text-slate-500"><X size={18}/> Support installation VPS</li>
+              </ul>
+
+              <a href="https://t.me/ukr92k" target="_blank" rel="noreferrer" className="block w-full py-3 text-center rounded-xl border border-slate-700 hover:bg-slate-800 text-white font-bold transition-all">
+                Acheter le Code
+              </a>
+            </div>
+
+            {/* Premium Setup */}
+            <div className="relative bg-slate-900 border border-cyan-500/30 rounded-2xl p-8 shadow-2xl shadow-cyan-900/20">
+              <div className="absolute top-0 right-0 bg-cyan-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">RECOMMANDÉ</div>
+              <h3 className="text-2xl font-bold text-white mb-2">Pack Clé en Main</h3>
+              <div className="text-4xl font-bold text-white mb-6">250€ <span className="text-sm font-normal text-slate-500">/ une fois</span></div>
+              <p className="text-slate-400 mb-8">Je m'occupe de tout. Installation, configuration du serveur, et mise en ligne du bot.</p>
+              
+              <ul className="space-y-4 mb-8">
+                <li className="flex gap-3 text-sm"><CheckCircle size={18} className="text-cyan-400"/> <strong>Code Source Complet inclus</strong></li>
+                <li className="flex gap-3 text-sm"><CheckCircle size={18} className="text-cyan-400"/> Installation sur votre VPS</li>
+                <li className="flex gap-3 text-sm"><CheckCircle size={18} className="text-cyan-400"/> Configuration Wallet Crypto</li>
+                <li className="flex gap-3 text-sm"><CheckCircle size={18} className="text-cyan-400"/> Support prioritaire 1 mois</li>
+              </ul>
+
+              <a href="https://t.me/ukr92k" target="_blank" rel="noreferrer" className="block w-full py-3 text-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold transition-all shadow-lg shadow-cyan-500/25">
+                Commander l'Installation
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-950 border-t border-slate-900 py-12">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2">
+            <div className="bg-slate-800 p-2 rounded-lg">
+              <Terminal size={16} className="text-white" />
+            </div>
+            <span className="font-bold text-white">UKR<span className="text-cyan-400">92k</span></span>
+          </div>
+          
+          <div className="text-slate-500 text-sm">
+            © 2024 AutoShop Dev. Tous droits réservés.
+          </div>
+
+          <div className="flex gap-6">
+            <a href="https://t.me/ukr92k" className="text-slate-400 hover:text-cyan-400 transition-colors">Telegram</a>
+            <a href="#" className="text-slate-400 hover:text-cyan-400 transition-colors">Github (Demo)</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+// Helper Component for Feature Cards
+const FeatureCard = ({ icon, title, desc }) => (
+  <div className="bg-slate-900/40 backdrop-blur border border-slate-800 p-6 rounded-2xl hover:bg-slate-800/60 hover:border-slate-700 transition-all group">
+    <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      {icon}
+    </div>
+    <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
+    <p className="text-slate-400 text-sm leading-relaxed">{desc}</p>
+  </div>
+);
+
+export default App;
